@@ -1,13 +1,12 @@
-import Jumbotron from "@/components/Jumbotron";
 import Wrapper from "@/components/Wrapper";
+import CategoryAdd from "@/components/category/CategoryAdd";
 import CategoryCatalog from "@/components/category/CategoryCatalog";
-import CourseCatalog from "@/components/course/CourseCatalog";
 
 export default function page() {
     return (
-        <Wrapper>
+        <Wrapper className="max-w-xl">
+            <CategoryAdd />
             <CategoryCatalog />
-            <CourseCatalog />
         </Wrapper>
     );
 }
