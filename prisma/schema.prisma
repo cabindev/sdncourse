@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum role {
+  normal
+  manager
+}
+
+model member {
+  id                String   @id @default(uuid())
+  name              String
+  password          String
+  email             String   @unique
+  role              role     @default(normal)
+  finished_lessions lesson[]
+  finished_courses  course[]
+}
+
+model category {
+  id      String   @id @default(uuid())
+  name    String
+  courses course[]
+}
+
+model course {
+  id          String    @id @default(uuid())
+  image       String
+  name        String
+  description String
+  lessions    lesson[]
+  category_id String?
+  member_id   String?
+  category    category? @relation(fields: [category_id], references: [id])
+  member      member?   @relation(fields: [member_id], references: [id])
+}
+
+model lesson {
+  id          String  @id @default(uuid())
+  episode     Int     @unique
+  code        String
+  name        String
+  description String
+  course_id   String?
+  member_id   String?
+  course      course? @relation(fields: [course_id], references: [id])
+  member      member? @relation(fields: [member_id], references: [id])
+}

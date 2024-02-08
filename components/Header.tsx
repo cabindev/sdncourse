@@ -18,6 +18,12 @@ export default function Header() {
                         จัดการคอร์ส
                     </Link>
                     <Link
+                        href="/manage/category"
+                        className="py-2 px-4 rounded-full font-medium text-primary"
+                    >
+                        จัดการหมวดหมู่
+                    </Link>
+                    <Link
                         href="/auth/signup"
                         className="py-2 px-4 rounded-full font-medium text-primary"
                     >

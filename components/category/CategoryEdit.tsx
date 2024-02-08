@@ -7,7 +7,7 @@ import Submit from "../common/Submit";
 export default function CategoryEdit() {
     return (
         <Wrapper className="max-w-xl">
-            <Jumbotron primary="เพิ่มหมวดหมู่" secondary="กรอกข้อมูลเพิ่มหมวดหมู่" />
+            <Jumbotron primary="เเก้ไขหมวดหมู่" secondary="กรอกข้อมูลเเก้ไขหมวดหมู่" />
             <Form className="space-y-2">
                 <Input type="text" name="name" placeholder="ชื่อ" required />
                 <Submit />

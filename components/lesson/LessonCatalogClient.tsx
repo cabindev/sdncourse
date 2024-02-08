@@ -1,12 +1,15 @@
 import LessonCardClient from "./LessonCardClient";
 
-export default function LessonCatalogClient() {
+interface props {
+    lessons: any[];
+}
+
+export default function LessonCatalogClient({ lessons }: props) {
     return (
         <div className="border flex flex-col rounded-lg justify-start items-center overflow-hidden divide-y">
-            <LessonCardClient />
-            <LessonCardClient />
-            <LessonCardClient />
-            <LessonCardClient />
+            {lessons.map((l, i) => (
+                <LessonCardClient name={l.name} course_id={l.course_id} episode={l.episode} />
+            ))}
         </div>
     );
 }

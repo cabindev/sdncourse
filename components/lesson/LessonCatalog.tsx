@@ -1,11 +1,15 @@
 import LessonCard from "./LessonCard";
 
-export default function LessonCatalog() {
+interface props {
+    lessons: any[];
+}
+
+export default function LessonCatalog({ lessons }: props) {
     return (
         <div className="border rounded-xl divide-y">
-            <LessonCard />
-            <LessonCard />
-            <LessonCard />
+            {lessons.map((l, i) => (
+                <LessonCard key={i} id={l.id} episode={l.episode} name={l.name} code={l.code} />
+            ))}
         </div>
     );
 }
