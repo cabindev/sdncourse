@@ -11,7 +11,7 @@ export default async function page() {
 
     return (
         <Wrapper>
-            <CategoryCatalog />
+            <CategoryCatalog categories={categories} />
             <CourseCatalog courses={courses} />
         </Wrapper>
     );
