@@ -14,7 +14,7 @@ export default function Logout() {
                     signOut();
                 })
             }
-            className="py-2 px-4 rounded-full font-medium bg-primary text-primary-foreground"
+            className="w-full md:w-auto py-2 px-4 rounded-full font-medium bg-primary text-primary-foreground"
         >
             {pending ? "ออกจากระบบ..." : "ออกจากระบบ"}
         </button>

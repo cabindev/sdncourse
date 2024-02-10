@@ -23,10 +23,12 @@ export default async function page({ params: { id }, searchParams: { ep } }: pro
     return (
         <Wrapper>
             <div className="grid grid-cols-3 gap-4 items-start">
-                <div className="col-span-2">
+                <div className="col-span-3 md:col-span-2 gap-4">
                     <Video code={lession.code} lesson_id={lession.id} />
                 </div>
-                <LessonCatalogClient lessons={lessions} />
+                <div className="col-span-3 md:col-span-1">
+                    <LessonCatalogClient lessons={lessions} />
+                </div>
             </div>
         </Wrapper>
     );

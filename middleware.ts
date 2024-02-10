@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
     const session = await getSession();
 
-    if (isManagerRoute(pathname) && session.payload.role != "manager") {
+    if (isManagerRoute(pathname) && session?.payload.role != "manager") {
         return NextResponse.redirect(new URL("/", request.url));
     }
 
