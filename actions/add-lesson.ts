@@ -1,9 +1,13 @@
 "use server";
 
 import prisma from "@/prisma";
+import { getSession } from "@/libs/auth";
 import { revalidatePath } from "next/cache";
 
 export default async function addLesson(state: any, raw: FormData) {
+    const session = await getSession();
+    if (session?.payload.role != "manager") return { error: "unauthorized" };
+
     const course_id = raw.get("course_id") as string;
     const episode = raw.get("episode") as string;
     const name = raw.get("name") as string;

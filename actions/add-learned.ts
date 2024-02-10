@@ -1,12 +1,15 @@
 "use server";
 
 import prisma from "@/prisma";
+import { getSession } from "@/libs/auth";
 
 export default async function addLearned(lesson_id: string) {
+    const session = await getSession();
+    if (!session) return { error: "unauthorized" };
+
     try {
-        await prisma.lesson.update({
-            where: { id: lesson_id },
-            data: { member_id: "0880f7c5-7443-4b12-b403-4f93fb9ce9a0" },
+        await prisma.learned.create({
+            data: { lesson_id: lesson_id, member_id: session.payload.id },
         });
         return { success: "add learned succeed" };
     } catch (error) {

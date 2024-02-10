@@ -1,7 +1,7 @@
 "use server";
 
-import { getSession } from "@/libs/auth";
 import prisma from "@/prisma";
+import { getSession } from "@/libs/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -17,8 +17,6 @@ export default async function editLesson(state: any, raw: FormData) {
     const description = raw.get("description") as string;
 
     const code = link.split("?v=")[1];
-
-    console.log(description);
 
     try {
         await prisma.lesson.update({

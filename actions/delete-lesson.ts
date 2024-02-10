@@ -1,7 +1,7 @@
 "use server";
 
-import { getSession } from "@/libs/auth";
 import prisma from "@/prisma";
+import { getSession } from "@/libs/auth";
 import { revalidatePath } from "next/cache";
 
 export default async function deleteLesson(id: string, course_id: string) {

@@ -13,13 +13,20 @@ enum role {
 }
 
 model member {
-  id               String   @id @default(uuid())
-  name             String
-  password         String
-  email            String   @unique
-  role             role     @default(normal)
-  finished_lessons lesson[]
-  finished_courses course[]
+  id             String    @id @default(uuid())
+  name           String
+  password       String
+  email          String    @unique
+  role           role      @default(normal)
+  learned_lesson learned[]
+}
+
+model learned {
+  id        String @id @default(uuid())
+  member_id String
+  lesson_id String
+  lesson    lesson @relation(fields: [lesson_id], references: [id])
+  member    member @relation(fields: [member_id], references: [id])
 }
 
 model category {
@@ -35,19 +42,16 @@ model course {
   description String
   lessions    lesson[]
   category_id String?
-  member_id   String?
   category    category? @relation(fields: [category_id], references: [id])
-  member      member?   @relation(fields: [member_id], references: [id])
 }
 
 model lesson {
-  id          String  @id @default(uuid())
+  id          String    @id @default(uuid())
   episode     Int
   code        String
   name        String
   description String
+  learned     learned[]
   course_id   String?
-  member_id   String?
-  course      course? @relation(fields: [course_id], references: [id])
-  member      member? @relation(fields: [member_id], references: [id])
+  course      course?   @relation(fields: [course_id], references: [id])
 }
