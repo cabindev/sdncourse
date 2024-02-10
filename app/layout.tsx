@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import "./globals.css";
 import { Anuphan } from "next/font/google";
 
-const anuphan = Anuphan({ subsets: ["latin"] });
+const anuphan = Anuphan({ subsets: ["thai"] });
 
 interface props {
     children: React.ReactNode;

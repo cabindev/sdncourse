@@ -5,7 +5,7 @@ import { useRef } from "react";
 interface props {
     children: React.ReactNode;
     className?: string;
-    action?: any;
+    action: any;
 }
 
 export default function Form({ children, className, action }: props) {
@@ -13,10 +13,10 @@ export default function Form({ children, className, action }: props) {
 
     return (
         <form
-            // action={async (raw) => {
-            //     await action(raw);
-            //     form.current?.reset();
-            // }}
+            action={async (raw) => {
+                await action(raw);
+                form.current?.reset();
+            }}
             className={className}
         >
             {children}

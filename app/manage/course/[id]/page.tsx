@@ -11,16 +11,20 @@ interface props {
 
 export default async function page({ params: { id } }: props) {
     const course = await prisma.course.findUnique({ where: { id } });
-    const lessons = await prisma.lesson.findMany({ where: { course_id: id } });
+    const lessons = await prisma.lesson.findMany({
+        where: { course_id: id },
+        orderBy: { episode: "asc" },
+    });
+    const categories = await prisma.category.findMany();
 
     if (!course) notFound();
 
     return (
         <Wrapper className="max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <CourseEdit course={course} />
+            <CourseEdit categories={categories} course={course} />
             <div className="space-y-4">
-                <LessonAdd />
-                <LessonCatalog lessons={lessons} />
+                <LessonAdd course_id={course.id} />
+                {lessons.length > 0 && <LessonCatalog lessons={lessons} />}
             </div>
         </Wrapper>
     );

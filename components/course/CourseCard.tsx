@@ -28,7 +28,7 @@ export default function CourseCard({
             <img className="w-full" src={image} />
             <div className="py-2 px-4">
                 <h3 className="tracking-tight font-bold">{name}</h3>
-                <p className="text-xs text-muted-foreground truncate">{description}</p>
+                <p className="text-xs text-muted-foreground">{description}</p>
                 <div className="mt-2 flex justify-between items-center">
                     <div className=" text-indigo-500">
                         <PlayCircleIcon className="w-4 h-4 inline mr-1" />

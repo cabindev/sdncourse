@@ -13,18 +13,18 @@ enum role {
 }
 
 model member {
-  id                String   @id @default(uuid())
-  name              String
-  password          String
-  email             String   @unique
-  role              role     @default(normal)
-  finished_lessions lesson[]
-  finished_courses  course[]
+  id               String   @id @default(uuid())
+  name             String
+  password         String
+  email            String   @unique
+  role             role     @default(normal)
+  finished_lessons lesson[]
+  finished_courses course[]
 }
 
 model category {
   id      String   @id @default(uuid())
-  name    String
+  name    String   @unique
   courses course[]
 }
 
@@ -42,7 +42,7 @@ model course {
 
 model lesson {
   id          String  @id @default(uuid())
-  episode     Int     @unique
+  episode     Int
   code        String
   name        String
   description String

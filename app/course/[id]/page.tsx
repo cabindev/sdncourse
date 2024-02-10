@@ -10,8 +10,11 @@ interface props {
 }
 
 export default async function page({ params: { id }, searchParams: { ep } }: props) {
-    const lessions = await prisma.lesson.findMany({ orderBy: { episode: "asc" } });
-    const lession = await prisma.lesson.findUnique({
+    const lessions = await prisma.lesson.findMany({
+        where: { course_id: id },
+        orderBy: { episode: "asc" },
+    });
+    const lession = await prisma.lesson.findFirst({
         where: { course_id: id, episode: parseInt(ep) },
     });
 
@@ -21,7 +24,7 @@ export default async function page({ params: { id }, searchParams: { ep } }: pro
         <Wrapper>
             <div className="grid grid-cols-3 gap-4 items-start">
                 <div className="col-span-2">
-                    <Video code={lession.code} />
+                    <Video code={lession.code} lesson_id={lession.id} />
                 </div>
                 <LessonCatalogClient lessons={lessions} />
             </div>

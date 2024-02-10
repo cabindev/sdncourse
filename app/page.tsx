@@ -11,7 +11,7 @@ export default async function page() {
 
     return (
         <Wrapper>
-            <CategoryCatalog categories={categories} />
+            {categories.length > 0 && <CategoryCatalog categories={categories} />}
             <CourseCatalog courses={courses} />
         </Wrapper>
     );
