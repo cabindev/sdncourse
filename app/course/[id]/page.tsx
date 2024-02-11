@@ -3,6 +3,7 @@ import Video from "@/components/Video";
 import Wrapper from "@/components/Wrapper";
 import LessonCatalogClient from "@/components/lesson/LessonCatalogClient";
 import { notFound } from "next/navigation";
+import { getSession } from "@/libs/auth";
 
 interface props {
     params: { id: string };
@@ -14,9 +15,13 @@ export default async function page({ params: { id }, searchParams: { ep } }: pro
         where: { course_id: id },
         orderBy: { episode: "asc" },
     });
+
     const lession = await prisma.lesson.findFirst({
         where: { course_id: id, episode: parseInt(ep) },
     });
+
+    const session = await getSession();
+    const learned = await prisma.learned.findMany({ where: { member_id: session?.payload.id } });
 
     if (!lession) notFound();
 
@@ -27,7 +32,7 @@ export default async function page({ params: { id }, searchParams: { ep } }: pro
                     <Video code={lession.code} lesson_id={lession.id} />
                 </div>
                 <div className="col-span-3 md:col-span-1">
-                    <LessonCatalogClient lessons={lessions} />
+                    <LessonCatalogClient lessons={lessions} learned={learned} />
                 </div>
             </div>
         </Wrapper>
