@@ -25,8 +25,10 @@ model learned {
   id        String @id @default(uuid())
   member_id String
   lesson_id String
-  lesson    lesson @relation(fields: [lesson_id], references: [id])
+  course_id String
   member    member @relation(fields: [member_id], references: [id])
+  lesson    lesson @relation(fields: [lesson_id], references: [id])
+  course    course @relation(fields: [course_id], references: [id])
 }
 
 model category {
@@ -41,6 +43,7 @@ model course {
   name        String
   description String
   lessions    lesson[]
+  course      learned[]
   category_id String?
   category    category? @relation(fields: [category_id], references: [id])
 }
