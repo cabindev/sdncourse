@@ -1,4 +1,4 @@
-export default function loading() {
+export default function Loading() {
     return (
         <svg
             className="animate-spin h-6 w-6"
