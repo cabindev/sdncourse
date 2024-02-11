@@ -1,5 +1,6 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
 
 const secretKey = "secret";
 const key = new TextEncoder().encode(secretKey);
@@ -29,4 +30,33 @@ export async function getSession() {
     const session = cookies().get("session")?.value;
     if (!session) return null;
     return await decrypt(session);
+}
+
+export async function updateSession(request: NextRequest) {
+    const session = request.cookies.get("session")?.value;
+
+    if (!session) {
+        return;
+    }
+
+    const response = await fetch("http://localhost:3000/api/auth/me", {
+        headers: { cookie: `session=${session}` },
+        cache: "no-store",
+    });
+
+    const { member } = await response.json();
+
+    const parsed = await decrypt(session);
+    parsed.payload = member;
+    parsed.expires = new Date(Date.now() + 60 * 60 * 24 * 1000);
+
+    const res = NextResponse.next();
+    res.cookies.set({
+        name: "session",
+        value: await encrypt(parsed),
+        httpOnly: true,
+        expires: parsed.expires,
+    });
+
+    return res;
 }

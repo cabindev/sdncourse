@@ -18,7 +18,7 @@ export default async function signIn(state: any, raw: FormData) {
         const match = await compare(password, exist.password);
         if (!match) return { error: "password is not correct" };
 
-        setSession({ id: exist.id, name: exist.email, role: exist.role });
+        setSession({ id: exist.id, email: exist.email, role: exist.role });
         success = true;
     } catch (error) {
         return { error: "something went wrong" };

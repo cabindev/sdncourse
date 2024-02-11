@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { updateSession } from "./libs/auth";
 import { getSession } from "./libs/auth";
 
 const isManagerRoute = (pathname: string) => {
@@ -18,13 +18,9 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL("/", request.url));
     }
 
-    if (isAuthRoute(pathname) && session) {
+    if (isAuthRoute(pathname) && session?.payload.id) {
         return NextResponse.redirect(new URL("/", request.url));
     }
 
-    return NextResponse.next();
+    return await updateSession(request);
 }
-
-export const config = {
-    matcher: ["/manage/:path*", "/auth/:path*"],
-};
