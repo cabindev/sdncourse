@@ -11,7 +11,11 @@ export default function CourseCatalog({ courses, learned, isManager = false }: p
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">
             {courses.map((c, i) => {
                 const learnedLessonsCount = learned.filter((l) => l.course_id === c.id).length;
-                const isPassed = learnedLessonsCount === c._count.lessions;
+                let isPassed = learnedLessonsCount === c._count.lessions;
+
+                if (learnedLessonsCount === 0) {
+                    isPassed = false;
+                }
 
                 return (
                     <CourseCard
