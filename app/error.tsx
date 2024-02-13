@@ -1,7 +1,5 @@
 "use client";
 
-export const revalidate = 0;
-
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 
 export default function Error({
