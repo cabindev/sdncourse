@@ -13,7 +13,7 @@ export default function Sidebar({ isMenuOpen, toggleMenu, member }: props) {
             <div
                 onClick={toggleMenu}
                 className={`absolute top-0 right-0 bottom-0 left-0 flex justify-center items-center ${
-                    isMenuOpen ? "bg-black/10" : "bg-black/0 hidden"
+                    isMenuOpen ? "bg-black/10" : "hidden"
                 } transition-opacity`}
             ></div>
             <div
@@ -45,6 +45,13 @@ export default function Sidebar({ isMenuOpen, toggleMenu, member }: props) {
                                 className="w-full py-2 px-4 font-medium text-primary"
                             >
                                 จัดการหมวดหมู่
+                            </Link>
+                            <Link
+                                href="/manage/member"
+                                onClick={toggleMenu}
+                                className="w-full py-2 px-4 font-medium text-primary"
+                            >
+                                จัดการผู้ใช้
                             </Link>
                         </>
                     )}

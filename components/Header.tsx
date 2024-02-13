@@ -44,6 +44,12 @@ export default function Header({ member }: props) {
                             >
                                 จัดการหมวดหมู่
                             </Link>
+                            <Link
+                                href="/manage/member"
+                                className="py-2 px-4 font-medium text-primary"
+                            >
+                                จัดการผู้ใช้
+                            </Link>
                         </>
                     )}
 
