@@ -9,6 +9,7 @@ export default function Error({
     error: Error & { digest?: string };
     reset: () => void;
 }) {
+    console.log(error);
     return (
         <div className="w-full h-screen flex flex-col justify-center items-center">
             <h1 className="text-2xl font-bold text-primary">มีบางอย่างผิดพลาด!</h1>
