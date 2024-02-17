@@ -10,6 +10,10 @@ const isAuthRoute = (pathname: string) => {
     return pathname.startsWith("/auth");
 };
 
+const isCourseRoute = (pathname: string) => {
+    return pathname.startsWith("/course");
+};
+
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
     const session = await getSession();
@@ -20,6 +24,10 @@ export async function middleware(request: NextRequest) {
 
     if (isAuthRoute(pathname) && session?.payload.id) {
         return NextResponse.redirect(new URL("/", request.url));
+    }
+
+    if (isCourseRoute(pathname) && !session?.payload.id) {
+        return NextResponse.redirect(new URL("/auth/signin", request.url));
     }
 
     return await updateSession(request);

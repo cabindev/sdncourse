@@ -27,7 +27,7 @@ export default function CourseCard({
             href={path}
             className="border shadow-lg rounded-lg overflow-hidden hover:translate-y-1 transition"
         >
-            <img className="w-full h-36 object-cover" src={image} />
+            <img className="w-full h-36 object-cover" src={"/upload/" + image} />
             <div className="py-2 px-4">
                 <h3 className="tracking-tight font-bold">{name}</h3>
                 <p className="text-xs text-muted-foreground truncate">{description}</p>
