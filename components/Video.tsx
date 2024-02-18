@@ -1,7 +1,6 @@
 "use client";
 
 import addLearned from "@/actions/add-learned";
-import { IframeHTMLAttributes, useRef } from "react";
 import YouTube from "react-youtube";
 
 interface props {
@@ -25,43 +24,22 @@ export default function Video({ code, lesson_id, course_id }: props) {
         }
     };
 
+    const opts = {
+        height: "100%",
+        width: "100%",
+        playerVars: {
+            controls: 0,
+            rel: 0,
+            disablekb: 1,
+        },
+    };
+
     return (
-        <div className="relative pb-[56.25%] pt-[30px] h-0 overflow-hidden max-w-full">
-            <iframe
-                title="YouTube Video"
-                className="rounded-lg overflow-hidden absolute top-0 left-0 w-full h-full"
-                src={`https://www.youtube.com/embed/${code}`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-            />
-
-            {/* <YouTube
-                className="rounded-lg absolute top-0 left-0 right-0 bottom-0 w-full h-full"
-                videoId={code}
-                opts={{
-                    playerVars: {
-                        controls: 0,
-                        rel: 0,
-                        disablekb: 1,
-                    },
-                }}
-                onStateChange={(e) => getCurrentTime(e)}
-            /> */}
-        </div>
-
-        // <div className="max-w-full relative aspect-video overflow-hidden">
-        // <YouTube
-        //     className="rounded-lg absolute top-0 left-0 right-0 bottom-0 w-full h-full"
-        //     videoId={code}
-        //     opts={{
-        //         playerVars: {
-        //             controls: 0,
-        //             rel: 0,
-        //             disablekb: 1,
-        //         },
-        //     }}
-        //     onStateChange={(e) => getCurrentTime(e)}
-        // />
-        // </div>
+        <YouTube
+            videoId={code}
+            opts={opts}
+            className=" aspect-video rounded-lg overflow-hidden"
+            onStateChange={(e) => getCurrentTime(e)}
+        />
     );
 }

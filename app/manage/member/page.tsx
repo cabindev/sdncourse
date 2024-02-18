@@ -5,11 +5,13 @@ import MemberTable from "@/components/member/MemberTable";
 
 export default async function page() {
     const members = await prisma.member.findMany();
+    const learned = await prisma.learned.findMany();
+    const lesson = await prisma.lesson.findMany();
 
     return (
         <Wrapper>
             <Jumbotron primary="ผู้ใช้ทั้งหมด" secondary="ข้อมูลผู้ใข้ทั้งหมด" />
-            <MemberTable members={members} />
+            <MemberTable lesson={lesson} learned={learned} members={members} />
         </Wrapper>
     );
 }
