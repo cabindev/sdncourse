@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { PlayCircleIcon, CheckBadgeIcon } from "@heroicons/react/24/outline";
 
 interface props {
@@ -22,12 +23,28 @@ export default function CourseCard({
 }: props) {
     const path = isManager ? "/manage/course/" + id : "/course/" + id + "?ep=1";
 
+    let image_link;
+    const fileIdMatch = image.match(/\/file\/d\/([^\/]+)\//);
+
+    if (fileIdMatch && fileIdMatch[1]) {
+        image_link = "https://drive.google.com/uc?id=" + fileIdMatch[1];
+    } else {
+        image_link = image;
+    }
+
     return (
         <Link
             href={path}
             className="border shadow-lg rounded-lg overflow-hidden hover:translate-y-1 transition"
         >
-            <img className="w-full h-36 object-cover" src={"/upload/" + image} />
+            <Image
+                width={200}
+                height={200}
+                src={image_link}
+                alt={image}
+                className="w-full h-36 object-cover"
+                loading="lazy"
+            />
             <div className="py-2 px-4">
                 <h3 className="tracking-tight font-bold">{name}</h3>
                 <p className="text-xs text-muted-foreground truncate">{description}</p>

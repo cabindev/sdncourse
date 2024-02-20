@@ -20,13 +20,7 @@ export default function CourseAdd({ categories }: props) {
             <Jumbotron primary="เพิ่มคอร์ส" secondary="กรอกข้อมูลเพื่อเพิ่มคอร์ส" />
             <Form action={action} className="space-y-2">
                 <Input type="text" name="name" placeholder="ชื่อ" required />
-                <Input
-                    type="file"
-                    name="image"
-                    placeholder="รูปภาพ"
-                    required
-                    accept={"image/png, image/jpeg"}
-                />
+                <Input type="text" name="image" placeholder="ลิ้งรูปภาพ" required />
                 <textarea
                     rows={5}
                     name="description"

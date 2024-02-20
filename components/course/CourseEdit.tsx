@@ -30,10 +30,10 @@ export default function CourseEdit({ course, categories }: props) {
                     required
                 />
                 <Input
-                    type="file"
+                    type="text"
                     name="image"
                     placeholder="ลิ้งรูปภาพ"
-                    accept={"image/png, image/jpeg"}
+                    defaultValue={course.image}
                     required
                 />
                 <textarea
