@@ -16,4 +16,6 @@ export async function GET(request: NextRequest) {
         const { id, email, role } = member;
         return NextResponse.json({ member: { id, email: email, role } }, { status: 200 });
     }
+
+    return NextResponse.json({ message: "unauthorized" }, { status: 401 });
 }
